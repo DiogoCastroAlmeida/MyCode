@@ -1,4 +1,4 @@
-#PfdScripts
+# PfdScripts
 
 Usefull scripts to manage daily pdf manipulation, such as merging, spliting an d rotating
 
