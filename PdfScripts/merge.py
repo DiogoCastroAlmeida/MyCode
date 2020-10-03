@@ -1,3 +1,9 @@
+
+"""
+Important note!!!
+This Script merges all .pdf files in the directory it is executed.
+The files will be merged according to theis alphabetic order!!!
+"""
 import PyPDF2 as pdf
 from tqdm import trange
 import os
@@ -29,14 +35,10 @@ def is_pdf(file):
         return False
 
 
-def Interface():
-    Merge(input("Enter new files' name:\n"), [file for file in os.listdir() if is_pdf(file)])
+#Uncomment the line bellow
+#Merge(input("Enter new files' name:\n"), [file for file in os.listdir() if is_pdf(file)])
 
 
-Interface()
 
 
-"""
-Important note!!!
-The files will be merged according to theis alphabetic order!!!
-"""
+
