@@ -39,21 +39,21 @@ Commands:
 
     @staticmethod
     def decide_operation(input_from_user):
-        try:
-            if input_from_user == UI.commands[0]:
-                UI.ExecuteCommands.create_profile()
-            elif input_from_user == UI.commands[1]:
-                UI.ExecuteCommands.delete_profile()
-            elif input_from_user == UI.commands[2]:
-                ManageProfiles.view_profiles()
-            elif input_from_user == UI.commands[3]:
-                UI.ExecuteCommands.roll_profile()
-            elif input_from_user == UI.commands[4]:
-                UI.ExecuteCommands.roll_dice()
-            else:
-                print(f"No command named '{input_from_user}' ")
-        except:
-            print("Invalid!!!")
+        #try:
+        if input_from_user == UI.commands[0]:
+            UI.ExecuteCommands.create_profile()
+        elif input_from_user == UI.commands[1]:
+            UI.ExecuteCommands.delete_profile()
+        elif input_from_user == UI.commands[2]:
+            print(ManageProfiles.view_profiles())
+        elif input_from_user == UI.commands[3]:
+            UI.ExecuteCommands.roll_profile()
+        elif input_from_user == UI.commands[4]:
+            UI.ExecuteCommands.roll_dice()
+        else:
+            print(f"No command named '{input_from_user}' ")
+        #except:
+         #   print("Invalid!!!")
 
 
     class ExecuteCommands():

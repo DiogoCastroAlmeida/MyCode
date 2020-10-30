@@ -1,26 +1,39 @@
 import dice_simulator
-import pickle
-class PicklingOperations():
-    @staticmethod
-    def picklle(file_path, object):
-        with open(file_path, "wb") as file:
-            pickle.dump(object, file)
-            return True
+import pickling_operation as picklle
 
-    @staticmethod
-    def unpickle(file_path):
-        with open(file_path, "rb") as file:
-            pickled = pickle.load(file)
-            return pickled
 
 
 class Profile():
-    profiles = {
+    profiles_file_name = "profiles.pickle"
 
-    }
+
+    @classmethod
+    def create_profiles_file(cls):
+        profiles_temp = { 
+            "cubic" : Profile(6, 1)
+            }
+        picklle.picklle(cls.profiles_file_name, profiles_temp)
+
+    @classmethod
+    def load_profiles_file(cls):
+        cls.profiles = picklle.unpickle(cls.profiles_file_name)
+    
+
+    @classmethod
+    def load_profiles(cls):
+        try:
+            #don't really know why it is necesary a cls in here
+            cls.load_profiles_file()
+        except FileNotFoundError as e:
+            cls.create_profiles_file()
+            #don't really know why it is necesary a cls in here
+            cls.load_profiles_file()
+ 
+
     def __init__(self, number_of_faces, number_of_dices):
         self.number_of_faces = number_of_faces
         self.number_of_dices=number_of_dices
+
 
     def __str__(self):
         return f"number of faces -> {self.number_of_faces}; number of dices -> {self.number_of_faces}"
@@ -32,30 +45,39 @@ class Profile():
 
 
 
-
 class ManageProfiles():
 
     @staticmethod
     def pickle_profiles():
-        pass
-
+        picklle.picklle(Profile.profiles_file_name, Profile.profiles)
 
 
     @staticmethod
     def make_profile(profile_name, number_of_faces=6, number_of_dices=1):
-        Profile.profiles[str(profile_name)] = Profile(number_of_faces, number_of_dices)
+        Profile.profiles[profile_name] = Profile(number_of_faces, number_of_dices)
+        ManageProfiles.pickle_profiles()
 
 
     @staticmethod
     def view_profiles():
         to_return = [f"{key_value}: {Profile.profiles[key_value]}" for key_value in Profile.profiles]
-        return "\n".join(to_return)
+        
+        if len(to_return) == 0:
+            return "No Profiles yet!"
+        else:
+            return "\n".join(to_return)
 
     @staticmethod
     def del_profile(profile_name):
-        del Profile.profiles[str(profile_name)]
+        del Profile.profiles[profile_name]
+        ManageProfiles.pickle_profiles()
 
 
     @staticmethod
     def roll_profile(profile_name):
-        return Profile.profiles[str(profile_name)].roll()
+        return Profile.profiles[profile_name].roll()
+
+
+
+#IMPORTANT - Load profiles file "profiles.pickle"
+Profile.load_profiles()
