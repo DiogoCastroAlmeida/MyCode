@@ -2,39 +2,71 @@ from profiles import ManageProfiles
 from dice_simulator import RollDices
 
 
+
+class Session():
+    def __init__(self, profile_name):
+        self.profile_name=profile_name
+
+
+    def roll(self):
+        print(ManageProfiles.roll_profile(self.profile_name))
+    
+
+    def delete(self):
+        ManageProfiles.del_profile(self.profile_name)
+        print("Profile successfully deleted")
+    
+    ####Prompt Part###
+    def session_prompt(self):
+        self.prompt = input(f"~{self.profile_name}~>")
+        self.decide_operation()
+    
+    def decide_operation(self):
+        pass
+
+    
+
 class UI ():
+
+####MANUAL####
+    @staticmethod
+    def manual():
+        manual = f"""
+Welcome to Dicer Manual!
+
+How dicer works:
+    In dicer you have modes:
+        - Main mode, where you can create profile (a profile is basically a\
+            dice) and view your current profiles
+        - Session mode, where you can roll and delete profiles.
+
+
+Commands:
+
+1. Create a profile
+    {UI.commands[0]}
+
+2. View profiles
+    {UI.commands[2]}
+
+3. Enter session mode
+    {UI.commands[3]}
+
+"""
+        print(manual)
+####MANUAL####
+    
+    
     commands = [
-    "create",
-    "delete",
-    "view",
-    "roll",
-    "dice"
+        "create",
+        "view",
+        "session",
     ]
 
 
     @staticmethod
-    def make_menu():
-        menu = f"""
-Welcome to the Dicer!!!
-
-Commands:
-1. Create a profile
-    {UI.commands[0]}
-2. Delete a profile
-    {UI.commands[1]}
-3. View profiles
-    {UI.commands[2]}
-4. Roll a profile(dice)
-    {UI.commands[3]}
-5. Roll a dice(without a profile)
-    {UI.commands[4]}
-"""
-        print(menu)
-
-
-    @staticmethod
-    def get_input():
-        to_return = input(": ")
+    def prompt():
+        to_return = input(">")
         return to_return.lower().replace(" ", "")
 
     @staticmethod
@@ -43,13 +75,7 @@ Commands:
         if input_from_user == UI.commands[0]:
             UI.ExecuteCommands.create_profile()
         elif input_from_user == UI.commands[1]:
-            UI.ExecuteCommands.delete_profile()
-        elif input_from_user == UI.commands[2]:
             print(ManageProfiles.view_profiles())
-        elif input_from_user == UI.commands[3]:
-            UI.ExecuteCommands.roll_profile()
-        elif input_from_user == UI.commands[4]:
-            UI.ExecuteCommands.roll_dice()
         else:
             print(f"No command named '{input_from_user}' ")
         #except:
@@ -67,31 +93,25 @@ Commands:
              number_of_dices=int(input("Enter number of dices: ")))
             print("Profile created")
 
-
         @staticmethod
-        def delete_profile():
-            ManageProfiles.del_profile(input("Enter profile name: "))
-            print("Profile deleted")
+        def view_profiles():
+            print(ManageProfiles.view_profiles())
+        
 
+        def enter_session():
+            name_profile = input("Enter name of the profile:")
+            ses = Session(name_profile)
 
-        @staticmethod
-        def roll_profile():
-            print(ManageProfiles.roll_profile(input("Enter profile name: ")))
-
-
-        @staticmethod
-        def roll_dice():
-            print(RollDices.roll_dices(number_of_faces=int(input("Enter number of faces for the dice: ")),
-             number_of_dices=int(input("Enter number of dices: "))))
 
 
 
 
 
 def run_dicer():
-    UI.make_menu()
     while True:
-        UI.decide_operation(UI.get_input())
+        UI.decide_operation(UI.prompt())
 
 
 run_dicer()
+
+
