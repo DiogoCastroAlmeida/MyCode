@@ -4,7 +4,7 @@ import pickling_operation as picklle
 
 
 class Profile():
-    profiles_file_name = "profiles.pickle"
+    profiles_file_name = r"Dicer\profiles.pickle"
 
 
     @classmethod
@@ -22,11 +22,9 @@ class Profile():
     @classmethod
     def load_profiles(cls):
         try:
-            #don't really know why it is necesary a cls in here
             cls.load_profiles_file()
-        except FileNotFoundError as e:
+        except:
             cls.create_profiles_file()
-            #don't really know why it is necesary a cls in here
             cls.load_profiles_file()
  
 
@@ -76,8 +74,18 @@ class ManageProfiles():
     @staticmethod
     def roll_profile(profile_name):
         return Profile.profiles[profile_name].roll()
+    
+
+    @staticmethod
+    def reset_settings():
+        Profile.create_profiles_file()
+        return "Settings reset!"
+
 
 
 
 #IMPORTANT - Load profiles file "profiles.pickle"
+#don't delete this line!
+
+
 Profile.load_profiles()
