@@ -1,6 +1,5 @@
 import wikipedia
 
-
 def print_dict(dict):
     for key, arg in dict.items():
         print(f"{key}: {arg};")
