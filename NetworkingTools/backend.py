@@ -9,14 +9,15 @@ colorama.init(autoreset=True)
 
 def get_service_by_port(port):
     try:
-        port_numb = int(port)
-    except:
-        port_numb = port
-    finally:
-        service = socket.getservbyport(port_numb)
-        utilities_module.print_extra_line(f"Service for port {port}:{Fore.GREEN}{service}")
+        service = socket.getservbyport(int(port))
+        utilities_module.print_extra_line(f"Service for port {port}: {Fore.GREEN}{service}")
+    except OverflowError:
+        utilities_module.print_extra_line(f"{Fore.RED}ERROR{Style.RESET_ALL} Port number most be in range 0-65535")
+    except OSError:
+        utilities_module.print_extra_line(f"{Fore.RED}ERROR{Style.RESET_ALL} Service not found.")
 
-#get_service_port("22")
+
+#get_service_by_port("80")
 
 
 def get_ipaddr(hostname, extended=False):
@@ -28,10 +29,10 @@ def get_ipaddr(hostname, extended=False):
         elif extended:
             print(f"Alternative alias for {hostname}: {Fore.GREEN}{utilities_module.convert_empty_list_to_none(addr[1])}")
             utilities_module.print_extra_line(f"IP Addresses for {hostname}: {Fore.GREEN}{addr[-1]}")
-    except:
-        utilities_module.print_extra_line(f"{Fore.RED}ERROR{Style.RESET_ALL}Couldn't get hostname for {hostname}")
+    except socket.gaierror:
+        utilities_module.print_extra_line(f"{Fore.RED}ERROR{Style.RESET_ALL} Couldn't get hostname for {hostname}")
 
-#get_ipaddr("unknowne0626749483e.lan", True)
+get_ipaddr("Diogo",True)
 
 
 def get_my_hostname():
