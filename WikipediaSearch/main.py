@@ -1,4 +1,9 @@
 import wikipedia
+import colorama
+from colorama import Fore
+
+
+colorama.init(autoreset=True)
 
 def print_dict(dict):
     for key, arg in dict.items():
@@ -14,7 +19,7 @@ class Wiki():
     def get_sugestions(self):
         self.sugestions = wikipedia.search(self.search_keyword,
                                           self.results_number,
-                                          True)[0] #retunr a tule in wich the first element is a list with the results
+                                          True)[0] #retunr a tuple in wich the first element is a list with the results
 
 
     def is_sugestion_empty(self):
@@ -53,7 +58,7 @@ def run():
     print_dict(wiki.organized_sugestions)
     page = input("Enter page number: ")
     result = wiki.get_page(int(page))
-    print(result)
+    print(f"{Fore.GREEN}{result}")
 
 
 while True:

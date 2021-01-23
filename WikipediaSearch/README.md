@@ -1,3 +1,3 @@
 # Wikipedia Search
 
-Aplication that searcg Wikipedia for articles and displays them.
+Aplication that search Wikipedia for articles and display them.
