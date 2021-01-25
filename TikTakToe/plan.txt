@@ -1,0 +1,6 @@
+The plan for this project
+
+The aim of this project:
+    The aim of this project is to build a tiktaktoe game that is extensible
+    in the sense thar the player could tweak the program to display a certain layout and not be limited 
+    to the 3 by 3 layout that we are all familiered with.
