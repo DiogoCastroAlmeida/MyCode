@@ -4,7 +4,7 @@ import utils
 
 
 class Config ():
-    #an abject of this class will be pickled so that the configuration options remain the same
+    # an abject of this class will be pickled so that the configuration options remain the same
     def __init__(self):
         self.players = []
         self.command_history = []
@@ -48,7 +48,7 @@ class Config ():
         self.list_players()
         player_id = int(input("Enter player ID:"))
         for player in self.players:
-            if player.id ==player_id:
+            if player.id == player_id:
                 self.players.remove(player)
                 print("Player Deleted")
                 break

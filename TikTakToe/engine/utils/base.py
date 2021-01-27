@@ -9,7 +9,7 @@ class Player():
     
     @classmethod
     def gen_player_id(cls):
-        cls.next_id +=1     #this way there will be no igual players id
+        cls.next_id +=1     # this way there will be no igual players id
         return cls.next_id
 
     def __init__(self, name):
@@ -23,8 +23,8 @@ class Player():
         }
         return str(to_return)
 
-#person = Player("Diogo")
-#print(person)
+# person = Player("Diogo")
+# print(person)
 
 
 class Space():
@@ -46,6 +46,8 @@ class Space():
         else:
             self.filled = True
             self.owner = player
+
+
 
 
 def gen_board( rows, collumns):
