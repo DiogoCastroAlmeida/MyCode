@@ -17,10 +17,10 @@ class CheckWinner():
         # now to check if the players id are all the same
         # print(player_ids)
         for times in range(len(player_ids)-1):
-            if player_ids[times] == player_ids[times+1]:
+            if player_ids[times] == player_ids[times+1] and player_ids[times] != 0:
                 continue
             else:
-                return False
+                return False 
         return True, to_parse[-1].owner
 
     def get_collumns(self):
@@ -68,7 +68,7 @@ class CheckWinner():
                     return True, result[-1]
             except:
                 pass
-        return False
+        return False, False # to be compatible with the return statement below
 
 
         

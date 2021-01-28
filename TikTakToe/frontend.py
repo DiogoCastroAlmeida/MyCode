@@ -2,6 +2,12 @@ import backend
 import utils
 from table import print_table
 import random
+import os
+import colorama
+from colorama import Fore, Style
+import sys
+
+colorama.init(autoreset=True)
 
 class App():
     def __init__(self):
@@ -11,6 +17,7 @@ class App():
             1: backend.QuickGame,
             2: backend.Game,
         }
+        self.ERROR = f"{Fore.RED}[ERROR]{Style.RESET_ALL}"
         self.login_screen()
         self.create_board()
         self.create_players()
@@ -19,10 +26,10 @@ class App():
 
     def login_screen(self):
         login = \
-""" 
+f""" 
 Welcome to this tik tak toe game
 
-    First, you will be prompted to choose if you want to play a Normal game, where you'll choose and create the players (you can have multiple players) and a Quick mode, where you will only choose the amount of players and not their names.
+    {Fore.GREEN}First, you will be prompted to choose if you want to play a Normal game, where you'll choose and create the players (you can have multiple players) and a Quick mode, where you will only choose the amount of players and not their names.
     
     Then a board will appear and you ill choose the coordinates you will want to play.
     Note: The first square has the coordinates (1,1) 
@@ -35,25 +42,27 @@ When a player wins, you will be prompted and the game will stop"""
     def print_modes(self):
         num = 1
         for mode in self.modes.values():
-            print(f"{num}: {mode.mode_name}")
+            print(f"{Fore.GREEN}{num}{Style.RESET_ALL}: {mode.mode_name}")
             num += 1
 
     def choose_mode(self):
         self.print_modes()
+        error_message = f"{self.ERROR} Not a mode"
         while True:
             print("Chose a mode")
             mode = input(f"(Default: {self.default_mode}): ")
             if mode == "":
                 return self.default_mode
             elif int(mode) not in self.modes.keys():
-                print("[ERROR] Not a mode")
+                print(error_message)
             else:
                 try:
                     return int(mode)
                 except:
-                    print("Invalid!")
+                    print(error_message)
 
     def choose_board_ratio(self):
+        error_message = f"{self.ERROR} Not an odd number."
         while True:
             raw_ratio = input("Choose board ratio (only odd numbers are available)(default: 3)")
             if raw_ratio == "":
@@ -63,13 +72,11 @@ When a player wins, you will be prompted and the game will stop"""
                 if utils.is_odd(ratio) and ratio != 1:
                     return ratio
                 else:
-                    print("Not an odd number.")
+                    print(error_message)
 
     def create_board(self):
         mode_number = self.choose_mode()
         self.mode = self.modes[mode_number]
-        # the self.mode attribute is for latter use
-        #self.mode = self.modes[mode_number]
         self.ratio = self.choose_board_ratio()
         self.game = self.mode(self.ratio, self.ratio)
 
@@ -77,17 +84,24 @@ When a player wins, you will be prompted and the game will stop"""
     def get_number_of_players(self):
         self.max_number_of_players = self.ratio
         while True:
-            self.number_of_players = int(input("Number of players: "))
-            if self.number_of_players <= self.max_number_of_players:
+            self.number_of_players = input("Number of players(Default: 2): ")
+            if self.number_of_players == "":
+                self.number_of_players = 2
                 break
-            elif self.number_of_players > self.max_number_of_players:
-                print("[ERROR] Too many players.")
-                print("")
+            else:
+                self.number_of_players = int(self.number_of_players)
+                if self.number_of_players > self.max_number_of_players:
+                    print(f"{self.ERROR} Too many players.")
+                elif self.number_of_players < 2:
+                    print(f"{self.ERROR} Can't have less than 2 players. Two is minimum.")
+                else:
+                    break
     
     def create_players_quick_mode(self):
         print("You have choosen quick mode")
         print("Choose number of players.")
         self.get_number_of_players()
+        print(self.number_of_players)
         self.game.gen_players(self.number_of_players)
 
     def create_players_normal_mode(self):
@@ -103,7 +117,7 @@ When a player wins, you will be prompted and the game will stop"""
 
     def print_players(self):
         for player in self.game.players:
-            print(player)
+            print(f"{Fore.YELLOW}{player}")
 
     
     def create_players(self):
@@ -132,34 +146,33 @@ When a player wins, you will be prompted and the game will stop"""
 
     @staticmethod
     def clean_coordinates(to_clean):
-        def int_a_list(object_):
-            inted_list = []
-            for element in object_:
-                inted_list.append(int(element))
-            return inted_list
         coordinates = to_clean.replace(" ", "")
-        coordinates = to_clean.split(",")
-        coordinates = int_a_list(coordinates)
-        return coordinates[0], coordinates[1]
-    
+        coordinates = coordinates.split(",")
+        coordinates = utils.int_a_list(coordinates)
+        coordinates = utils.subtract_one_to_all_elements_in_a_list(coordinates)
+        return coordinates
+
+    def check_if_game_is_won(self):
+        is_game_won = self.game.check_winner()
+        if is_game_won[0]:
+            print(f"{Fore.GREEN}{is_game_won[1].name} won the game")
+            self.print_board()
+            print(f"{Fore.RED}END OF GAME")
+            sys.exit()
+
+    def player_moves(self):
+        for player in self.game.players:
+            print(f"It is {Fore.GREEN}{player.name} turn!")
+            coordinates = input(f"{Fore.BLUE}Enter the coordinates you want to play in (Row, Column): {Style.RESET_ALL}")
+            coordinates = App.clean_coordinates(coordinates)
+            self.game.fill_space(coordinates, player.id)
+            self.check_if_game_is_won()
+            self.print_board()
+
     def play(self):
-        print(self.game.players[0])
-        self.is_game_finished = False
-        while not self.is_game_finished:
-            for player in self.game.players:
-                print(f"It is {player.name} time:")
-                print("Example: '1,2'")
-                coordinates = input("Enter the coordinates you want to play in:")
-                coordinates = App.clean_coordinates(coordinates)
-                self.game.fill_space(coordinates, player.id)
-                #self.game.check_winner()
-                self.print_board()
-                is_game_won = self.game.check_winner()
-                if is_game_won[0]:
-                    print("End of the game!!!")
-                    print(f"{is_game_won[1].name} won the game")
-                    break
-            self.is_game_finished == True
+        self.sort_players_randomly()
+        while True:
+           self.player_moves()
                 
 
 

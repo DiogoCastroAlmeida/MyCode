@@ -32,3 +32,17 @@ def is_odd(number):
         return True
     else:
         return False
+
+
+def subtract_one_to_all_elements_in_a_list(to_add):
+    list_to_return = []
+    for item in to_add:
+        list_to_return.append(item-1)
+    return list_to_return
+
+
+def int_a_list(object_):
+    inted_list = []
+    for element in object_:
+        inted_list.append(int(element))
+    return inted_list
