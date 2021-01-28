@@ -53,6 +53,8 @@ When a player wins, you will be prompted and the game will stop"""
             mode = input(f"(Default: {self.default_mode}): ")
             if mode == "":
                 return self.default_mode
+            elif not utils.is_int(mode):
+                print(error_message)
             elif int(mode) not in self.modes.keys():
                 print(error_message)
             else:
@@ -67,6 +69,8 @@ When a player wins, you will be prompted and the game will stop"""
             raw_ratio = input("Choose board ratio (only odd numbers are available)(default: 3)")
             if raw_ratio == "":
                 return self.default_ratio
+            elif not utils.is_int(raw_ratio):
+                print(f"{self.ERROR} Not a number.")
             else:
                 ratio = int(raw_ratio)
                 if utils.is_odd(ratio) and ratio != 1:
@@ -163,9 +167,17 @@ When a player wins, you will be prompted and the game will stop"""
     def player_moves(self):
         for player in self.game.players:
             print(f"It is {Fore.GREEN}{player.name} turn!")
-            coordinates = input(f"{Fore.BLUE}Enter the coordinates you want to play in (Row, Column): {Style.RESET_ALL}")
-            coordinates = App.clean_coordinates(coordinates)
-            self.game.fill_space(coordinates, player.id)
+            while True:
+                coordinates = input(f"{Fore.BLUE}Enter the coordinates you want to play in (Row, Column): {Style.RESET_ALL}")
+                try:
+                    coordinates = App.clean_coordinates(coordinates)
+                    self.game.fill_space(coordinates, player.id)
+                except ValueError:
+                    print(f"{self.ERROR} Wrong input.")
+                except  IndexError:
+                    print(f"{self.ERROR} Wrong input.")                    
+                else:
+                    break
             self.check_if_game_is_won()
             self.print_board()
 

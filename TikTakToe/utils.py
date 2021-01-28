@@ -46,3 +46,11 @@ def int_a_list(object_):
     for element in object_:
         inted_list.append(int(element))
     return inted_list
+
+def is_int(object_):
+    try:
+        int(object_)
+    except :
+        return False
+    else:
+        return True
