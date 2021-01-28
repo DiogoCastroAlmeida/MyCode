@@ -4,13 +4,13 @@ import random
 
 
 class Player():
-
     next_id = 0
     
     @classmethod
-    def gen_player_id(cls):
-        cls.next_id +=1     # this way there will be no igual players id
-        return cls.next_id
+    def gen_player_id(cls):     # this way there will be no igual players id
+        next_id = cls.next_id
+        cls.next_id +=1
+        return next_id
 
     def __init__(self, name):
         self.name = name
@@ -29,7 +29,7 @@ class Player():
 
 class Space():
 
-    def __init__ (self, filled=False, owner=None):
+    def __init__ (self, filled=False, owner=0):
         self.filled = filled
         self.owner = owner
 
@@ -41,7 +41,7 @@ class Space():
         return str(to_return)
 
     def fill(self, player):
-        if self.filled:
+        if self.filled and self.owner.id !=0:
             raise Exception("Space is already filled.")
         else:
             self.filled = True

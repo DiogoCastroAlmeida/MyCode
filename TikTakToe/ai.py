@@ -1,4 +1,4 @@
-from TikTakToe.engine.utils.further_utils import utils
+import utils
 
 
 class CheckWinner():
