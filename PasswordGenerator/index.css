@@ -1,0 +1,62 @@
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+.page_header {
+  text-align: center;
+}
+
+nav {
+  background-color: green;
+  height: 40px;
+  border-radius: 5px;
+}
+
+.links_list {
+    padding-left: 40%;
+    padding-right: 40%;
+}
+
+.links_list li {
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 11px;
+}
+
+.links_list li a {
+  text-decoration: none;
+  color: white;
+  border-radius: 2px;
+  padding:2px;
+
+}
+
+.links_list li a:hover {
+  background-color: white;
+  color: green;
+  border-radius: 2px;
+  padding:2px;
+}
+
+
+.main_holder {
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    }
+
+.main_holder_subdivisions {
+    width: 300px;
+}
+
+#submit_button {
+    text-align: center;
+    width:100px;
+    height: 30px;
+    margin-left: 40px;
+    margin-top: 20px;
+    border-style: none;
+    background-color: green;
+    color: white;
+}

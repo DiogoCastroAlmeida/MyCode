@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PassWord Generator</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&family=Yusei+Magic&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="index.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="page_header">PassWord Generator</h1>
+    </header>
+    <nav>
+      <ul class="links_list">
+        <li>
+          <a href="index.html">HOME</a>
+        </li>
+        <li>
+          <a href="contacts.html">CONTACTS</a>
+        </li>
+        <li>
+          <a href="about.html">ABOUT</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="main_holder">
+      <div class="main_holder_subdivisions" id="main_holder_subdivision1">
+        <h2>Generate your password</h2>
+        <form action="" method="get" id="form_for_pass">
+          <div>
+            <input type="checkbox" name="with_capitals" />
+            <label for="with_capitals">Include Capitals</label>
+          </div>
+          <div>
+            <input type="checkbox" name="with_special_characters" />
+            <label for="with_special_characters"
+              >Include special characters</label
+            >
+          </div>
+          <div>
+            <input type="checkbox" name="with_numbers" />
+            <label for="with_numbers">Include numbers</label>
+          </div>
+          <input id="submit_button" type="submit" name="submit"  value="Password">
+        </form>
+      </div>
+      <div class="main_holder_subdivisions" id="main_holder_subdivision2">
+        <h2>Tips for a strong password</h2>
+        <article>
+          A strong password must:
+          <ol>
+            <li>Include capital letters</li>
+            <li>Include special characters</li>
+            <li>Include numbers</li>
+            <li>Be random</li>
+          </ol>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

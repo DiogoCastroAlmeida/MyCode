@@ -68,7 +68,8 @@ class CheckWinner():
                     return True, result[-1]
             except:
                 pass
-        return False, False # to be compatible with the return statement below
+        # we return a tuple with falses to be compatible with the return statement True, in line 68.
+        return False, False 
 
 
         
