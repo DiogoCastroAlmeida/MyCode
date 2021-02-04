@@ -9,36 +9,57 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&family=Yusei+Magic&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="about.css">
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/master.css" />
+    <link rel="stylesheet" href="styles/about.css" />
   </head>
   <body>
     <header>
       <h1 class="page_header">PassWord Generator</h1>
     </header>
     <nav>
-      <ul class="links_list">
-        <li>
-          <a href="index.html">HOME</a>
-        </li>
-        <li>
-          <a href="contacts.html">CONTACTS</a>
-        </li>
-        <li>
-          <a href="about.html">ABOUT</a>
-        </li>
-      </ul>
+      <div id="navbar">
+        <div>
+          <a href="index.html">Home</a>
+        </div>
+        <div>
+          <a href="contacts.html">Contacts</a>
+        </div>
+        <div>
+          <a href="about.html">About</a>
+        </div>
+      </div>
     </nav>
-    <h2>
-        This is a Password Generator website.
-    </h2>
-    <article>
-        This website generates passwords for people to use. Remember to have a strong password.
-        Want to know more about passwords? Here are some useful articles:
+    <div id="main_holder">
+      <h2>This is a Password Generator website.</h2>
+      <article>
+        This website generates passwords for people to use. Remember to have a
+        strong password. Want to know more about passwords? Here are some useful
+        articles:
         <ul>
-            <li class="password_links"><a target="_blank" href="https://www.lifewire.com/strong-password-examples-2483118">Examples of weak and strong passwords</a></li>
-            <li class="password_links"><a target="_blank" href="https://www.howtogeek.com/195430/how-to-create-a-strong-password-and-remember-it/">How to create a strong password (and remember it)</a></li>
-            <li class="password_links"><a target="_blank" href="https://support.microsoft.com/en-us/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb">Create and use strong passwords</a></li>
+          <li class="password_links">
+            <a
+              target="_blank"
+              href="https://www.lifewire.com/strong-password-examples-2483118"
+              >Examples of weak and strong passwords</a
+            >
+          </li>
+          <li class="password_links">
+            <a
+              target="_blank"
+              href="https://www.howtogeek.com/195430/how-to-create-a-strong-password-and-remember-it/"
+              >How to create a strong password (and remember it)</a
+            >
+          </li>
+          <li class="password_links">
+            <a
+              target="_blank"
+              href="https://support.microsoft.com/en-us/windows/create-and-use-strong-passwords-c5cebb49-8c53-4f5e-2bc4-fe357ca048eb"
+              >Create and use strong passwords</a
+            >
+          </li>
         </ul>
-    </article>
-    </body>
+      </article>
+    </div>
+  </body>
+</html>

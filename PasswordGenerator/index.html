@@ -9,24 +9,26 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&family=Yusei+Magic&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/master.css" />
+    <link rel="stylesheet" href="styles/index.css" />
   </head>
   <body>
     <header>
       <h1 class="page_header">PassWord Generator</h1>
     </header>
     <nav>
-      <ul class="links_list">
-        <li>
-          <a href="index.html">HOME</a>
-        </li>
-        <li>
-          <a href="contacts.html">CONTACTS</a>
-        </li>
-        <li>
-          <a href="about.html">ABOUT</a>
-        </li>
-      </ul>
+      <div id="navbar">
+        <div>
+          <a href="index.html">Home</a>
+        </div>
+        <div>
+          <a href="contacts.html">Contacts</a>
+        </div>
+        <div>
+          <a href="about.html">About</a>
+        </div>
+      </div>
     </nav>
     <div class="main_holder">
       <div class="main_holder_subdivisions" id="main_holder_subdivision1">
@@ -46,7 +48,12 @@
             <input type="checkbox" name="with_numbers" />
             <label for="with_numbers">Include numbers</label>
           </div>
-          <input id="submit_button" type="submit" name="submit"  value="Password">
+          <input
+            id="submit_button"
+            type="submit"
+            name="submit"
+            value="Password"
+          />
         </form>
       </div>
       <div class="main_holder_subdivisions" id="main_holder_subdivision2">

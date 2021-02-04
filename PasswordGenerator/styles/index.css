@@ -1,0 +1,30 @@
+.page_header {
+  text-align: center;
+}
+
+.main_holder {
+  padding-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.main_holder_subdivisions {
+  width: 300px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.main_holder_subdivisions h2 {
+  padding-bottom: 10px;
+}
+
+#submit_button {
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  margin-left: 40px;
+  margin-top: 20px;
+  border-style: none;
+  background-color: green;
+  color: white;
+}

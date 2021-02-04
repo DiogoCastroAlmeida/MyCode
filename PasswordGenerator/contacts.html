@@ -9,30 +9,34 @@
       href="https://fonts.googleapis.com/css2?family=Roboto&family=Yusei+Magic&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="index.css" />
-    <link rel="stylesheet" href="contacts.css">
+    <link rel="stylesheet" href="styles/master.css" />
+    <link rel="stylesheet" href="styles/navbar.css" />
+    <link rel="stylesheet" href="styles/contacts.css" />
   </head>
   <body>
     <header>
       <h1 class="page_header">PassWord Generator</h1>
     </header>
     <nav>
-      <ul class="links_list">
-        <li>
-          <a href="index.html">HOME</a>
-        </li>
-        <li>
-          <a href="contacts.html">CONTACTS</a>
-        </li>
-        <li>
-          <a href="about.html">ABOUT</a>
-        </li>
-      </ul>
+      <div id="navbar">
+        <div>
+          <a href="index.html">Home</a>
+        </div>
+        <div>
+          <a href="contacts.html">Contacts</a>
+        </div>
+        <div>
+          <a href="about.html">About</a>
+        </div>
+      </div>
     </nav>
-    <h2 class="contacts">Contacts</h2>
-    <article class="contacts">
+    <div id="contacts_holder">
+      <h2 class="contacts">Contacts</h2>
+      <article class="contacts">
         Name: Diogo Almeida
-        <br>
+        <br />
         Email: kdiogoalmeida@gmail.com
-    </article>
-    </body>
+      </article>
+    </div>
+  </body>
+</html>

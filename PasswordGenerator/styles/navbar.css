@@ -1,0 +1,26 @@
+#navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: green;
+}
+
+#navbar div {
+  padding: 10px;
+}
+
+#navbar a {
+  color: white;
+  text-decoration: none;
+  border-radius: 2px;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+#navbar a:hover {
+  color: green;
+  background-color: white;
+  border-radius: 2px;
+  padding: 5px;
+  box-sizing: border-box;
+}
