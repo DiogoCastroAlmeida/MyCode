@@ -7,6 +7,7 @@ class Utilities():
         return string
 
 
+
 class Calculator():
 
     maths_operations_and_symbols = ["+", "-", "/", "*", "^", ",", "(", ")", "[", "]"]
