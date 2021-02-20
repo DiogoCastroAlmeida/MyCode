@@ -14,7 +14,7 @@ class Calculator():
     def __init__(self, operation):
         self.operation= operation
 
-#list with some exceptions that happen in the python
+#list with some exceptions that happen in python
     exception=[["^"],["**"]]
 
     def is_valid (self):
